@@ -1,0 +1,446 @@
+:root {
+  --rose: #ff5e7e;
+  --rose-2: #ff8aa1;
+  --rose-3: #ffb3c2;
+  --ink: #f5f5f5;
+  --bg-1: #0a0a0a;
+  --bg-2: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1000px circle at 50% -200px, #1a0a11, var(--bg-1) 40%, var(--bg-2));
+}
+
+#stars,
+#hearts,
+.shadow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#stars {
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: var(--size, 1px);
+  height: var(--size, 1px);
+  left: var(--left);
+  top: var(--top);
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  animation: twinkle 2.6s ease-in-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+#hearts {
+  z-index: 2;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  bottom: -48px;
+  left: var(--left, 50%);
+  width: var(--size, 18px);
+  height: var(--size, 18px);
+  transform: rotate(45deg);
+  background: radial-gradient(circle at 30% 30%, #ffd1db, var(--rose-3) 60%, var(--rose) 100%);
+  border-radius: 2px;
+  filter: drop-shadow(0 4px 10px rgba(255, 90, 120, 0.35));
+  opacity: var(--op, 0.95);
+  animation: floatUp var(--dur, 7s) linear forwards;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -50%;
+}
+
+.heart::after {
+  left: -50%;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translate(0, 0) rotate(45deg) scale(var(--scale, 1));
+    opacity: var(--op, 0.95);
+  }
+
+  100% {
+    transform: translate(var(--dx, 0), -110vh) rotate(45deg) scale(var(--scale, 1));
+    opacity: 0;
+  }
+}
+
+.shadow {
+  --cX: 50%;
+  --cY: 250px;
+  z-index: 1;
+  background: radial-gradient(
+    circle 6vmax at var(--cX) var(--cY),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.95)
+  );
+  transition: background 120ms linear;
+}
+
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  transform-origin: 50% 0;
+  transition: transform 200ms ease-out;
+}
+
+.cable {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1.5px);
+  width: 3px;
+  height: 200px;
+  background: linear-gradient(90deg, #c0c0c0, #1a1a1a);
+}
+
+.socket {
+  position: absolute;
+  top: 198px;
+  left: calc(50% - 20px);
+  width: 40px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #382f2c, #1f1a18);
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.45), 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bulb {
+  position: absolute;
+  top: 222px;
+  left: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  z-index: 6;
+  transform: rotate(180deg);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.3) 50%, rgba(255, 255, 255, 0.35)),
+    rgba(255, 255, 255, 0.22);
+  background-blend-mode: multiply;
+  backdrop-filter: blur(5px);
+  animation: pulseBulb 2.8s infinite ease-in-out alternate;
+}
+
+@keyframes pulseBulb {
+  0% {
+    box-shadow: 0 0 20px var(--rose-3);
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  100% {
+    box-shadow: 0 0 160px var(--rose-3);
+    background-color: rgba(255, 238, 242, 0.4);
+  }
+}
+
+.bulb::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  bottom: -19px;
+  width: 26px;
+  height: 22px;
+  border-radius: 0 0 10px 10px;
+  background: repeating-linear-gradient(0deg, #1c1c1c 0 3px, #f4f4f4 3px 6px);
+}
+
+.bulb::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 15px;
+  width: 20px;
+  height: 25px;
+  border-left: 2px solid #3d3732;
+  border-right: 2px solid #3d3732;
+  border-top: 1px solid #ab4a00;
+  transform: perspective(200px) rotateX(-40deg);
+  animation: pulseTungsten 3s infinite linear alternate;
+}
+
+@keyframes pulseTungsten {
+  from {
+    box-shadow: 0 0 0 var(--rose-2), inset 0 0 0 var(--rose-2), 0 0 40px rgba(255, 90, 120, 0.3);
+  }
+
+  to {
+    box-shadow: 0 0 6px var(--rose-2), inset 0 0 6px var(--rose-2), 0 0 60px rgba(255, 90, 120, 0.5);
+  }
+}
+
+.hint {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  text-align: center;
+  pointer-events: none;
+  font-weight: 300;
+  font-size: clamp(16px, 3vw, 24px);
+  color: var(--rose-2);
+  letter-spacing: 0.08em;
+  transition: opacity 300ms ease;
+}
+
+.hint.hidden {
+  opacity: 0;
+}
+
+.hiddenText {
+  position: fixed;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: min(92vw, 760px);
+  text-align: center;
+  opacity: 0.2;
+  transition: opacity 250ms ease;
+  mask-image: radial-gradient(circle 180px at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: radial-gradient(circle 180px at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.hiddenText.revealed {
+  opacity: 1;
+}
+
+.headline {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(44px, 8vw, 90px);
+  color: #ffd7e1;
+  text-shadow: 0 0 30px rgba(255, 130, 160, 0.55);
+}
+
+.subline {
+  margin-top: 6px;
+  font-size: clamp(15px, 2.2vw, 24px);
+  color: #ffe9ee;
+}
+
+.signature {
+  margin-top: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffc9d6;
+}
+
+.signature-link {
+  display: inline-block;
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 201, 214, 0.7);
+  border-radius: 999px;
+  text-decoration: none;
+  background: rgba(255, 94, 126, 0.18);
+  box-shadow: 0 0 22px rgba(255, 94, 126, 0.28);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  color: #ffc9d6;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+#toggleAudio {
+  margin-right: 8px;
+}
+
+#toggleAudio[hidden] {
+  display: none !important;
+}
+
+.signature-link:hover {
+  transform: translateY(-1px) scale(1.02);
+  background: rgba(255, 94, 126, 0.28);
+  box-shadow: 0 0 32px rgba(255, 94, 126, 0.42);
+}
+
+.signature-link:focus-visible {
+  outline: 2px solid #ffd7e1;
+  outline-offset: 3px;
+}
+
+.writing-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  display: none;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(5, 5, 5, 0.58);
+}
+
+.overlay-hearts {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.writing-overlay.open {
+  display: flex;
+}
+
+body.writing-page {
+  overflow: auto;
+  min-height: 100dvh;
+}
+
+body.writing-page .writing-board {
+  margin: 8vh auto;
+  z-index: 10;
+}
+
+.writing-board {
+  position: relative;
+  z-index: 13;
+  width: min(92vw, 900px);
+  margin: 0;
+  padding: clamp(18px, 3vw, 32px);
+  border: 1px solid rgba(255, 179, 194, 0.4);
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(21, 8, 13, 0.9), rgba(10, 10, 10, 0.86));
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), inset 0 0 40px rgba(255, 94, 126, 0.08);
+}
+
+.writing-title {
+  margin: 0;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(40px, 6vw, 68px);
+  color: #ffd7e1;
+  text-shadow: 0 0 24px rgba(255, 130, 160, 0.5);
+}
+
+.writing-subline {
+  margin: 8px 0 16px;
+  color: #ffe9ee;
+  font-size: clamp(14px, 2vw, 20px);
+}
+
+.love-textarea {
+  width: 100%;
+  min-height: min(46vh, 420px);
+  padding: 16px;
+  border: 1px solid rgba(255, 201, 214, 0.5);
+  border-radius: 12px;
+  resize: vertical;
+  color: #fff2f6;
+  background: rgba(255, 255, 255, 0.04);
+  font: 400 16px/1.7 "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.love-textarea::placeholder {
+  color: rgba(255, 233, 238, 0.7);
+}
+
+.writing-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.love-btn {
+  border: 1px solid rgba(255, 201, 214, 0.75);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: rgba(255, 94, 126, 0.2);
+  color: #ffe9ee;
+  font: 600 14px "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.love-status {
+  margin: 10px 0 0;
+  color: #ffc9d6;
+  font-size: 14px;
+}
+
+.atentamente {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  margin: 0;
+  font-weight: 600;
+  color: #ffc9d6;
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .hiddenText {
+    top: 60%;
+  }
+
+  .cable {
+    height: 170px;
+  }
+
+  .socket {
+    top: 168px;
+  }
+
+  .bulb {
+    top: 192px;
+  }
+
+  .writing-board {
+    max-height: 88vh;
+    overflow: auto;
+  }
+
+  .atentamente {
+    right: 12px;
+    bottom: 10px;
+    font-size: 14px;
+  }
+}

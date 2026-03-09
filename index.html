@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Valentine Surprise</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+	<link rel="preload" as="audio" href="Los Rojos Duelo Oscar Iv%C3%A1n Trev%C3%ADno A M%C3%AD Me Gustas T%C3%BA Historia.mp3" type="audio/mpeg">
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js" defer></script>
+</head>
+<body>
+	<div id="stars"></div>
+	<div id="hearts"></div>
+	<div class="shadow" aria-hidden="true"></div>
+
+	<div class="wrapper" aria-hidden="true">
+		<div class="cable"></div>
+		<div class="socket"></div>
+		<div class="bulb" title="Mueve el cursor para revelar"></div>
+	</div>
+
+	<div class="hint" id="hint">PASA DEDO POR ENCIMA</div>
+
+	<div
+		class="hiddenText"
+		role="img"
+		aria-label=""
+		id="hiddenText"
+	>
+		<div class="headline">Feliz primer mes Cariño</div>
+		<div class="subline">Tu mi niña hermosa, que te convertiste en el brillo que ilumina mi mundo y mi ser.</div>
+		<button class="signature signature-link" id="toggleAudio" type="button" hidden aria-hidden="true">Reproducir musica</button>
+		<button class="signature signature-link" id="openNotebook" type="button">Presiona aquí</button>
+	</div>
+
+	<audio id="bgMusic" preload="auto" loop autoplay>
+		<source src="Los Rojos Duelo Oscar Iv%C3%A1n Trev%C3%ADno A M%C3%AD Me Gustas T%C3%BA Historia.mp3" type="audio/mpeg">
+	</audio>
+
+<section class="writing-overlay" id="writingOverlay" aria-hidden="true">
+	<div class="overlay-hearts" id="overlayHearts" aria-hidden="true"></div>
+    <div class="writing-board" role="dialog" aria-modal="true" aria-labelledby="writingTitle">
+        <h2 class="writing-title" id="writingTitle">Palabras para mi Novia </h2>
+        <h2 class="writing-title" id="writingTitle">🍓MONSE🍓</h2>
+        <p class="writing-subline">Eres mi paz, mi luz y mi alegría.</p>
+        
+        <p>Un mes de noviazgo y ya siento de verdad que cada día me enamoro más y más de ti. Tú, mi niña hermosa, me motivas a creer en mí mismo.</p>
+        
+        <p>Adoro pasar tiempo contigo. Desde que estamos juntos no hay día en el que no me emocione por verte, abrazarte o besarte. Tú has mejorado mis días.</p>
+        
+        <p>Tu sonrisa ilumina mi día y amo bromear, reír y carcajear junto a ti. Gracias por elegirme. Espero que este sea solo el primer mes de muchos más juntos.</p>
+        
+		<p style="font-weight:700; color:#c9184a; margin-top:10px;">❤️TE AMO❤️</p>
+		<p class="atentamente">Atentamente: Moises</p>
+        
+        <div class="writing-actions">
+            <button id="closeNotebook" class="love-btn" type="button">Cerrar</button>
+        </div>
+    </div>
+</section>
+</body>
+
+</html>
